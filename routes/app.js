@@ -5,7 +5,22 @@ const router = express.Router();
 
 router.get("/", function(req, res){
  res.render("index")
-})
+});
+
+router.get("/contact", (req, res) => {
+    // Please bring me out to dinner first 🍝
+    //res.send("Buy me dinner first");
+    res.render("contact");
+});
+
+// Post Routing
+router.post("/contact", (req, res) => {
+    if(req.body){
+        console.log(req.body.username);
+        console.log(req.body.email);
+        res.render("dashboard",{username: req.body.username, email: req.body.email});
+    }
+});
 
 /*
 // Get Routing

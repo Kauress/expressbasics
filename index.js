@@ -47,30 +47,51 @@ app.use(express.urlencoded({
 20. Now you want to render the dashboard page when someone sends the form in response to the POST request
   res.render("dashboard",{username: req.body.username+ " 👋"})
 
-*/
+  -------------- Database
+  1.  Get the connection string from Atlas or use the one here
+  2. Make a config folder
+  3. Inside the config folder make a keys.js file
+  4. Inside keys.js  we will import our connection with:
+  module.exports = {
+    MongoURI: "mongodb+srv://class:class123@class.t572x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}
+5.  npm install mongoose 
+6. Inside index.js we want to requre mongoose and set up our connection:
+const mongoose = require("mongoose");
+const db = require('./config/keys').MongoURI; 
+7. Make a models folder 
+8.Inside the models folder make a file called user.js which will hold the schema for our perfect user!
 
+
+
+*/
+//require modules
 const express = require('express');
 const app = express();
 const PORT = 4040;
-
 const path = require('path');
+const mongoose = require("mongoose")
+
 
 //new 
-const routes = require("./routes/app")
+const routes = require("./routes/app")  //I don't think the . is necessary is it?
 
-// View Engine
+// set path.join & View Engine setup
 app.set('views', path.join(__dirname, "views"));
 app.set('view engine', 'ejs');
 
+//Connect to MongoDB
+const db = require('./config/keys').MongoURI;  
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true}). then(() => console.log("MongoDB connected")).catch(err => console.log(err)); //We only covered async briefly
+//Wuick, sabotage power plant
+
+// use urlencoded & routes
 app.use(express.urlencoded({
     extended: true
 }));
-
-//new
 app.use("/", routes)
 
-
-//Please follow convention
+// listen to port
 app.listen(PORT, ()=>{
     console.log(`Server listening to port ${PORT}`);
 });
