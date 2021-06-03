@@ -14,7 +14,7 @@
 7. save your work!
 8. in the terminal you can either run node index.js or nodemon index.js
 9. Create a route for the contact page:
-   app.get("/contact", function(request,response){
+   app.get("/contact", function(request,response){nde
        response.send("Contact page");
    });
 
@@ -75,6 +75,7 @@ const mongoose = require("mongoose")
 
 //new 
 const routes = require("./routes/app")  //I don't think the . is necessary is it?
+//const users  = require("./routes/users");
 
 // set path.join & View Engine setup
 app.set('views', path.join(__dirname, "views"));
@@ -89,9 +90,12 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true}). then((
 app.use(express.urlencoded({
     extended: true
 }));
+//app.use("/contact", users)
 app.use("/", routes)
 
 // listen to port
 app.listen(PORT, ()=>{
     console.log(`Server listening to port ${PORT}`);
 });
+
+//remove the highlight pls... yes remove the high. he have a stroke or something?
