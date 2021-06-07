@@ -12,6 +12,12 @@ router.get("/contact", (req, res) => {
     //res.send("Buy me dinner first");
     res.render("contact");
 });
+/*
+router.get("/contact", (req, res) => {
+    // Please bring me out to dinner first 🍝
+    //res.send("Buy me dinner first");
+    res.render("contact");
+});
 
 router.post("/contact", (req, res) => {
 	console.log(req.body.username);
@@ -36,4 +42,5 @@ router.post("/contact", (req, res) => {
 	}
 });
 
+*/
 module.exports = router;

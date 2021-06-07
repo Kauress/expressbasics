@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const UserSchema = new mongoose.Schema({
-     username:{
+    username:{
         type: String,
         unique: true,
         lowercase: true,
@@ -25,6 +26,8 @@ const UserSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+
 
 const User = mongoose.model("User", UserSchema);
 //export the schema
